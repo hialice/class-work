@@ -1,0 +1,148 @@
+"""
+1. Take your landscapes and refactor it by grouping related lines of code into functions.
+   Your draw loop should look something like the code below, but, with functions relevant
+   to YOUR landscape.
+2. Turn the functions into functions that take arguments for x and y co-ordinates so they can
+   be reused to draw multiple items in different locations. For example:
+   
+   def draw_sun(x, y):
+      noStroke()
+      fill(255,255,0)
+      ellipse(x, y,200,200)
+   
+   # called by:
+   draw_sun(620, height/12)  # or wherever you want to draw the sun
+"""
+x = 0
+y = 190
+def setup():
+    size(640, 480)
+
+def draw():
+    global x
+    global y
+    
+    if x >= 590:
+        x = 50
+    x += 2
+   
+    background(135, 206, 250)
+    
+    def grass(x, y):
+        noStroke()
+        fill(0, 255, 0)
+        rect(x, y, 640, 100)
+    
+    def sun(x, y):
+        fill(255, 255, 0)
+        ellipse(x, y, 200, 200)
+    
+    def cloud(x, y):
+        fill(255)
+        ellipse(x, y, 50, 50)
+
+    def mountain(x, y):
+        fill(100)
+        triangle(x, y, 0, 100, 150, height - 100) 
+        fill(255)
+        triangle(x, y - 200, 0, 100, 43, height - 300) 
+
+    def house():
+        fill(255, 100, 0)
+        rect(480, height - 200, 100, 100) 
+        rect(555, height - 270, 20, 40)
+        fill(150, 0, 0)
+        triangle(600, 280, 530, 200, 460, 280) 
+        rect(515, height - 150, 30, 50)
+        fill(225, 200, 0)
+        rect(495, height - 185, 20, 20)
+        rect(545, height - 185, 20, 20)    
+        
+    if y <= 100:
+        y = 190
+    y += -1
+    
+    def smoke(x, y):
+        fill(150) 
+        rect(x, y, 5, 20)
+        rect(x + 11, y, 5, 20)
+
+    def purple_flower(x, y):
+        fill(0, 170, 0)
+        rect(x, y, 5, 20)
+        fill(153, 50, 204)
+        ellipse(x - 6 + 5/2, y, 10, 10)
+        ellipse(x - 7 + 5/2, y - 9, 10, 10)
+        ellipse(x + 6 + 5/2, y, 10, 10)
+        ellipse(x + 7 + 5/2, y - 9, 10, 10)
+        ellipse(x + 5/2, y - 14, 10, 10)
+        fill(225, 225, 0)
+        ellipse(x + 5/2, y - 5, 10, 10)
+    
+    def pink_flower(x, y):
+        fill(0, 170, 0)
+        rect(x, y, 5, 20)
+        fill(255, 20, 147)
+        ellipse(x - 6 + 5/2, y, 10, 10)
+        ellipse(x - 7 + 5/2, y - 9, 10, 10)
+        ellipse(x + 6 + 5/2, y, 10, 10)
+        ellipse(x + 7 + 5/2, y - 9, 10, 10)
+        ellipse(x + 5/2,y - 14, 10, 10)
+        fill(225, 225, 0)
+        ellipse(x + 5/2, y - 5, 10, 10)
+
+    
+
+#trees
+    fill(165, 69, 19)
+    rect(350, height - 200, 25, 100)
+    fill(0, 100, 0)
+    ellipse(350 + 25/2, height - 230, 40, 40)
+    ellipse(350 + 25/2, height - 250, 40, 40)
+    ellipse(350 + 25/2, height - 210, 40, 40)
+    ellipse(330 + 25/2, height - 240, 40, 40)
+    ellipse(330 + 25/2, height - 220, 40, 40)
+    ellipse(370 + 25/2, height - 240, 40, 40)
+    ellipse(370 + 25/2, height - 220, 40, 40)
+    fill(200, 0, 0)
+    ellipse(360 + 25/2, height - 230, 20, 20)
+    
+    fill(165, 69, 19)
+    rect(250, height - 200, 25, 100)
+    fill(0, 100, 0)
+    ellipse(250 + 25/2, height - 230, 40, 40)
+    ellipse(250 + 25/2, height - 250, 40, 40)
+    ellipse(250 + 25/2, height - 210, 40, 40)
+    ellipse(230 + 25/2, height - 240, 40, 40)
+    ellipse(230 + 25/2, height - 220, 40, 40)
+    ellipse(270 + 25/2, height - 240, 40, 40)
+    ellipse(270 + 25/2, height - 220, 40, 40)
+    fill(200, 0, 0)
+    ellipse(240 + 25/2, height - 240, 20, 20)
+    ellipse(260 + 25/2, height - 225, 20, 20)
+    
+    fill(165, 69, 19)
+    rect(150, height - 200, 25, 100)
+    fill(0, 100, 0)
+    ellipse(150 + 25/2, height - 230, 40, 40)
+    ellipse(150 + 25/2, height - 250, 40, 40)
+    ellipse(150 + 25/2, height - 210, 40, 40)
+    ellipse(130 + 25/2, height - 240, 40, 40)
+    ellipse(130 + 25/2, height - 220, 40, 40)
+    ellipse(170 + 25/2, height - 240, 40, 40)
+    ellipse(170 + 25/2, height - 220, 40, 40)
+    fill(200, 0, 0)
+    ellipse(140 + 25/2, height - 240, 20, 20)
+    
+    grass(0, height - 100)
+    sun(640, 0)
+    cloud(x, height/5)
+    cloud(x + 25, height/5)
+    cloud(x - 25, height/5)
+    cloud(x, height/5 - 25)
+    mountain(0, height - 100)
+    house()
+    smoke(557, y)
+    purple_flower(405, height - 120)
+    purple_flower(455, height - 120)
+    pink_flower(430, height - 120)
