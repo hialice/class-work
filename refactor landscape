@@ -15,31 +15,37 @@
 """
 x = 0
 y = 190
+
 def setup():
     size(640, 480)
 
 def draw():
     global x
     global y
-    
-    if x >= 590:
-        x = 50
-    x += 2
+   
    
     background(135, 206, 250)
+    
     
     def grass(x, y):
         noStroke()
         fill(0, 255, 0)
         rect(x, y, 640, 100)
     
+    
     def sun(x, y):
         fill(255, 255, 0)
         ellipse(x, y, 200, 200)
     
+    
+    if x >= 590:
+        x = 50
+    x += 2
+   
     def cloud(x, y):
         fill(255)
         ellipse(x, y, 50, 50)
+
 
     def mountain(x, y):
         fill(100)
@@ -47,25 +53,37 @@ def draw():
         fill(255)
         triangle(x, y - 200, 0, 100, 43, height - 300) 
 
-    def house():
+
+    def house_wall(x, y):
         fill(255, 100, 0)
-        rect(480, height - 200, 100, 100) 
-        rect(555, height - 270, 20, 40)
-        fill(150, 0, 0)
-        triangle(600, 280, 530, 200, 460, 280) 
-        rect(515, height - 150, 30, 50)
-        fill(225, 200, 0)
-        rect(495, height - 185, 20, 20)
-        rect(545, height - 185, 20, 20)    
+        rect(x, y, 100, 100)
         
-    if y <= 100:
-        y = 190
-    y += -1
+    def house_chimney(x, y):
+        fill(255, 100, 0) 
+        rect(x, y, 20, 40)
+        
+    def house_roof(x1, y1, x2, y2, x3, y3):
+        fill(150, 0, 0)
+        triangle(x1, y1, x2, y2, x3, y3)
+        
+    def house_door(x, y):
+        fill(150, 0, 0)    
+        rect(x, y, 30, 50)
+        
+    def house_window(x, y):
+        fill(225, 200, 0)
+        rect(x, y, 20, 20)
     
-    def smoke(x, y):
+        
+    def smoke(x):
+        global y
+        if y <= 100:
+            y = 190
+        y += -1
         fill(150) 
         rect(x, y, 5, 20)
         rect(x + 11, y, 5, 20)
+
 
     def purple_flower(x, y):
         fill(0, 170, 0)
@@ -90,50 +108,25 @@ def draw():
         ellipse(x + 5/2,y - 14, 10, 10)
         fill(225, 225, 0)
         ellipse(x + 5/2, y - 5, 10, 10)
+        
+        
+    def tree(x, y):
+        fill(165, 69, 19)
+        rect(x, y, 25, 100)
+        fill(0, 100, 0)
+        ellipse(x + 25/2, y - 30, 40, 40)
+        ellipse(x + 25/2, y - 50, 40, 40)
+        ellipse(x + 25/2, y - 10, 40, 40)
+        ellipse(x - 20 + 25/2, y - 40, 40, 40)
+        ellipse(x - 20 + 25/2, y - 20, 40, 40)
+        ellipse(x + 20 + 25/2, y - 40, 40, 40)
+        ellipse(x + 20 + 25/2, y - 20, 40, 40)
 
+    def apple(x, y):
+        fill(200, 0, 0)
+        ellipse(x, y, 20, 20)
     
-
-#trees
-    fill(165, 69, 19)
-    rect(350, height - 200, 25, 100)
-    fill(0, 100, 0)
-    ellipse(350 + 25/2, height - 230, 40, 40)
-    ellipse(350 + 25/2, height - 250, 40, 40)
-    ellipse(350 + 25/2, height - 210, 40, 40)
-    ellipse(330 + 25/2, height - 240, 40, 40)
-    ellipse(330 + 25/2, height - 220, 40, 40)
-    ellipse(370 + 25/2, height - 240, 40, 40)
-    ellipse(370 + 25/2, height - 220, 40, 40)
-    fill(200, 0, 0)
-    ellipse(360 + 25/2, height - 230, 20, 20)
-    
-    fill(165, 69, 19)
-    rect(250, height - 200, 25, 100)
-    fill(0, 100, 0)
-    ellipse(250 + 25/2, height - 230, 40, 40)
-    ellipse(250 + 25/2, height - 250, 40, 40)
-    ellipse(250 + 25/2, height - 210, 40, 40)
-    ellipse(230 + 25/2, height - 240, 40, 40)
-    ellipse(230 + 25/2, height - 220, 40, 40)
-    ellipse(270 + 25/2, height - 240, 40, 40)
-    ellipse(270 + 25/2, height - 220, 40, 40)
-    fill(200, 0, 0)
-    ellipse(240 + 25/2, height - 240, 20, 20)
-    ellipse(260 + 25/2, height - 225, 20, 20)
-    
-    fill(165, 69, 19)
-    rect(150, height - 200, 25, 100)
-    fill(0, 100, 0)
-    ellipse(150 + 25/2, height - 230, 40, 40)
-    ellipse(150 + 25/2, height - 250, 40, 40)
-    ellipse(150 + 25/2, height - 210, 40, 40)
-    ellipse(130 + 25/2, height - 240, 40, 40)
-    ellipse(130 + 25/2, height - 220, 40, 40)
-    ellipse(170 + 25/2, height - 240, 40, 40)
-    ellipse(170 + 25/2, height - 220, 40, 40)
-    fill(200, 0, 0)
-    ellipse(140 + 25/2, height - 240, 20, 20)
-    
+   
     grass(0, height - 100)
     sun(640, 0)
     cloud(x, height/5)
@@ -141,8 +134,20 @@ def draw():
     cloud(x - 25, height/5)
     cloud(x, height/5 - 25)
     mountain(0, height - 100)
-    house()
-    smoke(557, y)
+    house_wall(480, height - 200)
+    house_chimney(555, height - 270)
+    house_roof(600, 280, 530, 200, 460, 280)
+    house_door(515, height - 150)
+    house_window(545, height - 185)
+    house_window(495, height - 185)
+    smoke(557)
     purple_flower(405, height - 120)
     purple_flower(455, height - 120)
     pink_flower(430, height - 120)
+    tree(350, height - 200)
+    apple(360 + 25/2, height - 230)
+    tree(250, height - 200)
+    apple(240 + 25/2, height - 240)
+    apple(260 + 25/2, height - 225)
+    tree(150, height - 200)
+    apple(140 + 25/2, height - 240)
